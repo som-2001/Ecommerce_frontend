@@ -10,7 +10,7 @@ function About() {
   const token = Cookies.get("accessToken");
   return (
     <Box className={styles.container}>
-       {token ? <AuthNavbar /> : <HomeNavbar />}
+      {token ? <AuthNavbar /> : <HomeNavbar />}
       <Box
         className={styles.banner}
         style={{ backgroundImage: `url("../images/about_banner.jpg")` }}
@@ -46,9 +46,9 @@ function About() {
           className={`${styles.aboutText} ${styles.aboutTextXs}`}
         >
           We are passionate about providing the best biking experience. Whether
-          you are a professional rider or a casual enthusiast, our mission is
-          to offer the finest bikes, gear, and accessories to make your
-          adventures unforgettable.
+          you are a professional rider or a casual enthusiast, our mission is to
+          offer the finest bikes, gear, and accessories to make your adventures
+          unforgettable.
         </Typography>
       </Box>
 
@@ -64,10 +64,7 @@ function About() {
           <Typography variant="h6" className={styles.featureTitle}>
             High-Performance Bikes
           </Typography>
-          <Typography
-            variant="body2"
-            className={styles.featureDescription}
-          >
+          <Typography variant="body2" className={styles.featureDescription}>
             Experience the thrill with our range of high-performance bikes
             designed for speed and agility.
           </Typography>
@@ -138,7 +135,6 @@ function About() {
             fellow riders.
           </Typography>
         </Grid>
-       
       </Grid>
 
       {/* Team Section */}
@@ -160,10 +156,7 @@ function About() {
             <Typography variant="h6" className={styles.teamMemberName}>
               Someswar Gorai
             </Typography>
-            <Typography
-              variant="body2"
-              className={styles.teamMemberRole}
-            >
+            <Typography variant="body2" className={styles.teamMemberRole}>
               Frontend Developer
             </Typography>
           </Grid>
@@ -177,10 +170,7 @@ function About() {
             <Typography variant="h6" className={styles.teamMemberName}>
               Amardeep Dubey
             </Typography>
-            <Typography
-              variant="body2"
-              className={styles.teamMemberRole}
-            >
+            <Typography variant="body2" className={styles.teamMemberRole}>
               Senoir Developer & Lead
             </Typography>
           </Grid>
@@ -194,10 +184,7 @@ function About() {
             <Typography variant="h6" className={styles.teamMemberName}>
               Md Danish
             </Typography>
-            <Typography
-              variant="body2"
-              className={styles.teamMemberRole}
-            >
+            <Typography variant="body2" className={styles.teamMemberRole}>
               backend Developer
             </Typography>
           </Grid>

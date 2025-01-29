@@ -7,7 +7,7 @@ import { cartProducts, initializeCart, initializewishList } from "../Redux/Produ
 import { useDispatch } from "react-redux";
 
 export const ScrollReset = () => {
-  const location = useLocation(); // Get the current location
+  const location = useLocation(); 
   const dispatch=useDispatch();
 
   useEffect(() => {
@@ -40,9 +40,9 @@ export const ScrollReset = () => {
   }, [location.pathname,dispatch]);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Reset the scroll position
+    window.scrollTo(0, 0); 
     console.log("Scrolled to top for:", location.pathname);
-  }, [location.pathname]); // Run effect on location change
+  }, [location.pathname]); 
 
   return (
     <Box>

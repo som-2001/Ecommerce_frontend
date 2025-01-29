@@ -13,16 +13,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Favorite } from "@mui/icons-material";
 import Cookies from "js-cookie";
-import styles from '../../styles/FeatureProduct.module.css'
+import styles from "../../styles/FeatureProduct.module.css";
 
 const FeatureProduct = ({ product }) => {
   const navigate = useNavigate();
   const token = Cookies.get("accessToken");
 
   return (
-    <Box
-      className={styles.parent}
-    >
+    <Box className={styles.parent}>
       <Typography variant="body2" color="#999999" gutterBottom>
         Your Best Ride Starts here
       </Typography>
@@ -33,18 +31,11 @@ const FeatureProduct = ({ product }) => {
         Feature Products
       </Typography>
       <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={6}
-          lg={3}
-         className={styles.center}
-        >
+        <Grid item xs={12} sm={6} md={6} lg={3} className={styles.center}>
           {product &&
             product?.slice(0, 2)?.map((product, index) => (
               <Card
-              className={styles.Card}
+                className={styles.Card}
                 sx={{
                   width: { xs: "300px", sm: "300px" },
                 }}
@@ -56,14 +47,8 @@ const FeatureProduct = ({ product }) => {
                   alt=""
                 />
 
-                {token && (
-                  <Favorite
-                   className={styles.Icon}
-                  />
-                )}
-                <CardContent
-                  className={styles.body}
-                >
+                {token && <Favorite className={styles.Icon} />}
+                <CardContent className={styles.body}>
                   <Typography variant="h6" component="div">
                     {product?.productName}
                   </Typography>
@@ -71,9 +56,7 @@ const FeatureProduct = ({ product }) => {
                     {product?.description.slice(0, 70)}...
                   </Typography>
                   <Divider sx={{ backgroundColor: "#C6E4FF", my: 1 }} />
-                  <Box
-                    className={styles.icons}
-                  >
+                  <Box className={styles.icons}>
                     <Box>
                       <Typography>{product?.mileage} Miles</Typography>
                     </Box>
@@ -88,14 +71,12 @@ const FeatureProduct = ({ product }) => {
                   <Box
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <Typography
-                      className={styles.price}
-                    >
-                      ${product?.offerPrice}
+                    <Typography className={styles.price}>
+                      ₹{product?.offerPrice}
                     </Typography>
                     <Button
                       variant="contained"
-                     className={styles.btn}
+                      className={styles.btn}
                       onClick={(e) =>
                         navigate(
                           `/view-product/${product?._id}/${product?.modelNumber}`
@@ -126,7 +107,7 @@ const FeatureProduct = ({ product }) => {
               <Card
                 className={styles.Card}
                 sx={{
-                  width: { xs: "300px", sm: "300px",md:"500px" },
+                  width: { xs: "300px", sm: "300px", md: "500px" },
                 }}
               >
                 <CardMedia
@@ -137,14 +118,8 @@ const FeatureProduct = ({ product }) => {
                   sx={{ height: { xs: "200px", sm: "300px" } }}
                 />
 
-                {token && (
-                  <Favorite
-                    className={styles.Icon}
-                  />
-                )}
-                <CardContent
-                    className={styles.body}
-                >
+                {token && <Favorite className={styles.Icon} />}
+                <CardContent className={styles.body}>
                   <Typography variant="h6" component="div">
                     {product?.productName}
                   </Typography>
@@ -152,9 +127,7 @@ const FeatureProduct = ({ product }) => {
                     {product?.description.slice(0, 70)}...
                   </Typography>
                   <Divider sx={{ backgroundColor: "#C6E4FF", my: 1 }} />
-                  <Box
-                   className={styles.icons}
-                  >
+                  <Box className={styles.icons}>
                     <Box>
                       <Typography>{product?.mileage} Miles</Typography>
                     </Box>
@@ -169,10 +142,8 @@ const FeatureProduct = ({ product }) => {
                   <Box
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <Typography
-                     className={styles.price}
-                    >
-                      ${product?.offerPrice}
+                    <Typography className={styles.price}>
+                      ₹{product?.offerPrice}
                     </Typography>
                     <Button
                       variant="contained"
@@ -191,21 +162,13 @@ const FeatureProduct = ({ product }) => {
             ))}
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={6}
-          lg={3}
-          className={styles.center}
-        >
+        <Grid item xs={12} sm={6} md={6} lg={3} className={styles.center}>
           {product &&
             product?.slice(3, 5)?.map((product, index) => (
               <Card
-              className={styles.Card}
+                className={styles.Card}
                 sx={{
                   width: { xs: "300px", sm: "300px" },
-                  
                 }}
               >
                 <CardMedia
@@ -215,14 +178,8 @@ const FeatureProduct = ({ product }) => {
                   alt=""
                 />
 
-                {token && (
-                  <Favorite
-                   className={styles.Icon}
-                  />
-                )}
-                <CardContent
-                  className={styles.body}
-                >
+                {token && <Favorite className={styles.Icon} />}
+                <CardContent className={styles.body}>
                   <Typography variant="h6" component="div">
                     {product?.productName}
                   </Typography>
@@ -230,9 +187,7 @@ const FeatureProduct = ({ product }) => {
                     {product?.description.slice(0, 70)}...
                   </Typography>
                   <Divider sx={{ backgroundColor: "#C6E4FF", my: 1 }} />
-                  <Box
-                     className={styles.icons}
-                  >
+                  <Box className={styles.icons}>
                     <Box>
                       <Typography>{product?.mileage} Miles</Typography>
                     </Box>
@@ -247,10 +202,8 @@ const FeatureProduct = ({ product }) => {
                   <Box
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <Typography
-                        className={styles.price}
-                    >
-                      ${product?.offerPrice}
+                    <Typography className={styles.price}>
+                      ₹{product?.offerPrice}
                     </Typography>
                     <Button
                       variant="contained"

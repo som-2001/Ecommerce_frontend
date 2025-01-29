@@ -72,11 +72,11 @@ export const CartProduct = ({ cart, setCart }) => {
           <Typography
             className={styles.offerPrice}
           >
-            ${cart?.product?.offerPrice}
+            ₹{cart?.product?.offerPrice}
             <span
               className={styles.originalPrice}
             >
-              ${cart?.product?.originalPrice}
+              ₹{cart?.product?.originalPrice}
             </span>{" "}
             <span className={styles.discount}>
               {cart?.product?.discount}% OFF

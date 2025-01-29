@@ -11,14 +11,17 @@ export const Success = () => {
   const handleBackToHome = () => {
     navigate("/explore-products");
   };
- 
+
   const url = window.location.href;
-  const session_id=url.split("/success?")[1];
+  const session_id = url.split("/success?")[1];
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASEURL}/orders/confirm-order?${session_id}`, {
-        withCredentials: true,
-      })
+      .get(
+        `${process.env.REACT_APP_BASEURL}/orders/confirm-order?${session_id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res.data);
       })
@@ -28,8 +31,8 @@ export const Success = () => {
   }, []);
 
   return (
-    <Container maxWidth="sm" className={styles.container} >
-      <CheckCircleIcon className={styles.icon}/>
+    <Container maxWidth="sm" className={styles.container}>
+      <CheckCircleIcon className={styles.icon} />
       <Typography variant="h4" gutterBottom>
         Order Successful!
       </Typography>

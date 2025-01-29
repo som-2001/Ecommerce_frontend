@@ -47,7 +47,7 @@ function App() {
               <Route path="/wishlist" element={<WishList />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/success" element={<Success />} />
-              <Route path="/error" element={<OrderError />} />
+              <Route path="/cancel" element={<OrderError />} />
             </Route>
             <Route path="/admin/" element={<AdminLayout />}>
               <Route path="dashboard" element={<AdminDashboard />} />

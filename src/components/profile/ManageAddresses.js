@@ -49,7 +49,7 @@ export const ManageAddresses = ({ profile, load }) => {
   };
   return (
     <Box sx={{ width: { xs: "88vw", sm: "77vw" }, margin: "0 auto", mt: 4 }}>
-      {/* Header Section */}
+    
       <Typography
         variant="h6"
         color="text.secondary"
@@ -59,7 +59,7 @@ export const ManageAddresses = ({ profile, load }) => {
         My Addresses ({profile?.address?.length})
       </Typography>
 
-      {/* Add New Address Box */}
+    
       <Box className={styles.addressBox} onClick={(e) => setOpenDialog(true)}>
         <AddIcon sx={{ color: "#4caf50", fontSize: "2rem", mr: 2 }} />
         <Typography
@@ -70,7 +70,7 @@ export const ManageAddresses = ({ profile, load }) => {
         </Typography>
       </Box>
 
-      {/* Empty State */}
+    
       {address?.length === 0 ? (
         <Box
          className={styles.emptyAddress}
@@ -81,7 +81,7 @@ export const ManageAddresses = ({ profile, load }) => {
         </Box>
       ) : null}
 
-      {/* Address Cards */}
+    
       <Grid container spacing={2}>
         {load ? (
           <Box
@@ -95,7 +95,7 @@ export const ManageAddresses = ({ profile, load }) => {
               <Box
                className={styles.addressTypeBox}
               >
-                {/* Address Type Icon */}
+             
                 <Chip
                   label={data?.addressType}
                   sx={{
@@ -112,7 +112,7 @@ export const ManageAddresses = ({ profile, load }) => {
                   }
                 />
 
-                {/* Address Details */}
+              
 
                 <Box sx={{ mt: 1 }}>
                   <Typography
@@ -151,7 +151,7 @@ export const ManageAddresses = ({ profile, load }) => {
                   </Typography>
                 </Box>
 
-                {/* Action Buttons */}
+               
                 <Box
                 className={styles.ActionButton}
                 >

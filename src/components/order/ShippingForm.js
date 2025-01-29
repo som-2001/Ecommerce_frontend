@@ -28,7 +28,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
         setShippingDate({ method: method, deliveryDate: fastDeliveryDate })
       );
     } else {
-      
       dispatch(
         setShippingDate({ method: method, deliveryDate: scheduledDate })
       );
@@ -37,11 +36,9 @@ export const ShippingForm = ({ handlefunction1 }) => {
     if (method !== "Schedule") {
       setScheduledDate(null);
     }
-    if (method === "Schedule" && scheduledDate !== null){
-      
+    if (method === "Schedule" && scheduledDate !== null) {
       handlefunction1(true);
-    }
-    else if (method !== "Schedule") handlefunction1(true);
+    } else if (method !== "Schedule") handlefunction1(true);
   };
 
   return (
@@ -50,7 +47,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
         Shipment Method (3)
       </Typography>
 
-      {/* Free Option */}
       <Box
         sx={{ border: "1px solid #dfdfdf", padding: 4, my: 2 }}
         onClick={() => handleSelection("Free")}
@@ -70,13 +66,7 @@ export const ShippingForm = ({ handlefunction1 }) => {
             />
             <Typography variant="body1">Free</Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={4}
-            className={styles.shipmentCenter}
-          >
+          <Grid item xs={12} sm={12} md={4} className={styles.shipmentCenter}>
             <Typography variant="body1">Regular Shipment Method</Typography>
           </Grid>
           <Grid
@@ -87,7 +77,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
             lg={6}
             className={styles.shipmentCenter}
             sx={{
-              
               alignItems: { xs: "start", md: "center" },
             }}
           >
@@ -98,7 +87,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
         </Grid>
       </Box>
 
-      {/* $8.50 Option */}
       <Box
         sx={{ border: "1px solid #dfdfdf", padding: 4, my: 2 }}
         onClick={() => handleSelection("8")}
@@ -116,15 +104,9 @@ export const ShippingForm = ({ handlefunction1 }) => {
               control={<Radio checked={selectedMethod === "8"} />}
               label=""
             />
-            <Typography variant="body1">$8</Typography>
+            <Typography variant="body1">₹8</Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={4}
-            className={styles.shipmentCenter}
-          >
+          <Grid item xs={12} sm={12} md={4} className={styles.shipmentCenter}>
             <Typography variant="body1">
               Get your delivery as soon as possible
             </Typography>
@@ -137,7 +119,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
             lg={6}
             className={styles.shipmentCenter}
             sx={{
-             
               alignItems: { xs: "start", md: "center" },
             }}
           >
@@ -148,7 +129,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
         </Grid>
       </Box>
 
-      {/* Schedule Option */}
       <Box
         sx={{ border: "1px solid #dfdfdf", padding: 4, my: 2 }}
         onClick={() => handleSelection("Schedule")}
@@ -168,13 +148,7 @@ export const ShippingForm = ({ handlefunction1 }) => {
             />
             <Typography variant="body1">Schedule</Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            md={4}
-            className={styles.shipmentCenter}
-          >
+          <Grid item xs={12} sm={12} md={4} className={styles.shipmentCenter}>
             <Typography variant="body1">
               Pick a date when you want to get your delivery
             </Typography>
@@ -187,7 +161,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
             lg={6}
             className={styles.shipmentCenter}
             sx={{
-             
               alignItems: { xs: "start", md: "center" },
             }}
           >
@@ -195,8 +168,6 @@ export const ShippingForm = ({ handlefunction1 }) => {
               <DatePicker
                 value={scheduledDate}
                 onChange={(date) => {
-                 
-                  
                   setScheduledDate(date);
                   handleSelection("Schedule");
                 }}

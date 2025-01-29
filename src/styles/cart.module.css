@@ -122,9 +122,10 @@
   font-size: 16px;
   text-transform: none;
   font-weight: 600 !important;
-  border: none; /* Optional, to ensure no border */
-  cursor: pointer; /* Adds a pointer on hover */
-  transition: background-color 0.3s ease; /* Smooth transition for hover */
+  border: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease;
+  
 }
 
 .placeOrder:hover {

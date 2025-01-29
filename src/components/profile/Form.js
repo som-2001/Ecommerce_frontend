@@ -82,26 +82,17 @@ export const Form = ({ data, setChangeState, changeState, load }) => {
         width: { xs: "88vw", sm: "77vw" },
       }}
     >
-      <Box
-       className={styles.formParent}
-      >
+      <Box className={styles.formParent}>
         {!isEdit && (
-          <Box
-            className={styles.Editsection}
-          >
-            <Button
-              className={styles.editBtn}
-              onClick={(e) => setIsEdit(true)}
-            >
+          <Box className={styles.Editsection}>
+            <Button className={styles.editBtn} onClick={(e) => setIsEdit(true)}>
               Edit
             </Button>
           </Box>
         )}
 
         {isEdit && (
-          <Box
-          className={styles.Editsection}
-          >
+          <Box className={styles.Editsection}>
             <Button
               type="submit"
               className={styles.editBtn}

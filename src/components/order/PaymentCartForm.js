@@ -14,6 +14,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import styles from "../../styles/Order.module.css";
+import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const stripe = await stripePromise;
@@ -22,6 +23,7 @@ export const PaymentCartForm = () => {
   const { address, shippingDate, cartProducts, amount } = useSelector(
     (state) => state.product
   );
+  const navigate=useNavigate();
   const [selectedItem, setSelectedItem] = useState("");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
 
@@ -40,6 +42,9 @@ export const PaymentCartForm = () => {
         withCredentials: true,
       }
     );
+    if (response?.data?.message === "Order confirmed successfully.") {
+      navigate("/success");
+    } 
     const session = response.data?.checkoutSessionId;
     const result = await stripe.redirectToCheckout({ sessionId: session });
 
@@ -97,7 +102,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography variant="body1" color="green" fontWeight="bold">
-                  ${product?.product?.offerPrice}{" "}
+                ₹{product?.product?.offerPrice}{" "}
                   <span
                     style={{
                       fontSize: "14px",
@@ -105,7 +110,7 @@ export const PaymentCartForm = () => {
                       textDecoration: "line-through",
                     }}
                   >
-                    ${product?.product?.originalPrice}
+                    ₹{product?.product?.originalPrice}
                   </span>{" "}
                   <span style={{ fontSize: "12px", color: "black" }}>
                     {product?.product?.discount}%OFF
@@ -174,7 +179,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" textAlign="right">
-                  ${amount}
+                ₹{amount}
                 </Typography>
               </Grid>
             </Grid>
@@ -184,7 +189,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" textAlign="right">
-                  ${Tax}
+                ₹{Tax}
                 </Typography>
               </Grid>
             </Grid>
@@ -210,7 +215,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h6" fontWeight="bold" textAlign="right">
-                  $
+                ₹
                   {shippingDate?.method === "Free" ||
                   shippingDate?.method === "Schedule"
                     ? Number(Tax) + Number(amount)

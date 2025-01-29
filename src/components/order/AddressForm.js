@@ -1,4 +1,4 @@
-  import { Box, Chip, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import { AddressDialogFunc } from "../profile/AddressDialogFunc";
@@ -7,13 +7,13 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { setAddressDetails } from "../../Redux/ProductAdminSlice/ProductSlice";
-import styles from '../../styles/Order.module.css'
+import styles from "../../styles/Order.module.css";
 
 export const AddressForm = ({ handlefunction }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [addressData, setAddressData] = useState([]);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -32,9 +32,9 @@ export const AddressForm = ({ handlefunction }) => {
       });
   }, []);
 
-  const handleIdFunction = (id,address) => {
-    setSelectedId((prev) => (prev === id ? null : id)); // Toggle the same checkbox or select a new one
-    dispatch(setAddressDetails({address:address}));
+  const handleIdFunction = (id, address) => {
+    setSelectedId((prev) => (prev === id ? null : id));
+    dispatch(setAddressDetails({ address: address }));
     handlefunction(true);
   };
 
@@ -48,7 +48,7 @@ export const AddressForm = ({ handlefunction }) => {
         className={styles.addressParent}
         onClick={(e) => setOpenDialog(true)}
       >
-        <AddIcon className={styles.icon}/>
+        <AddIcon className={styles.icon} />
         <Typography
           variant="body2"
           color="text.secondary"
@@ -59,16 +59,13 @@ export const AddressForm = ({ handlefunction }) => {
       </Box>
 
       {addressData.map((address) => (
-        <Box
-          key={address.id}
-          className={styles.addressMap}
-        >
+        <Box key={address.id} className={styles.addressMap}>
           <Box>
             <input
               type="radio"
-              style={{cursor:"pointer"}}
-              checked={selectedId === address._id} // Only the selected checkbox will appear checked
-              onChange={() => handleIdFunction(address._id,address)}
+              style={{ cursor: "pointer" }}
+              checked={selectedId === address._id} 
+              onChange={() => handleIdFunction(address._id, address)}
             />
           </Box>
           <Box>
@@ -81,11 +78,20 @@ export const AddressForm = ({ handlefunction }) => {
                 color: "white",
               }}
             />
-            <Typography variant="body1" sx={{fontWeight:"bold"}}>{address?.customerName}</Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+              {address?.customerName}
+            </Typography>
             <Typography variant="body2" color="text.secondary">
               {address?.landmark}
             </Typography>
-            <Box sx={{ display: "flex", flexDirection: "row",flexWrap:"wrap",wordBreak:"break-word" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                wordBreak: "break-word",
+              }}
+            >
               <Typography variant="body2" color="text.secondary">
                 {address?.locality},{" "}
               </Typography>
@@ -107,7 +113,12 @@ export const AddressForm = ({ handlefunction }) => {
       ))}
 
       {openDialog && (
-        <AddressDialogFunc open={openDialog} setOpen={setOpenDialog} profileData={addressData} setProfileData={setAddressData} />
+        <AddressDialogFunc
+          open={openDialog}
+          setOpen={setOpenDialog}
+          profileData={addressData}
+          setProfileData={setAddressData}
+        />
       )}
     </Box>
   );

@@ -20,7 +20,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import styles from '../../styles/profile.module.css'
 
-// Yup validation schema
 const schema = yup
   .object()
   .shape({
@@ -81,11 +80,11 @@ export const AddressEditDialogFunc = ({
     setValue("addressType", profileData.addressType);
   }, [profileData, setValue]);
 
-  // On form submission
+  
   const onSubmit = async (data) => {
     try {
       console.log(data);
-      // Prepare payload for the API request
+    
       const payload = {
         customerName: data.customerName,
         contactNumber: data.contactNumber,
@@ -98,7 +97,7 @@ export const AddressEditDialogFunc = ({
         addressType: data.addressType,
       };
 
-      // Make the API call using axios.put
+     
       const response = await axios.put(
         `${process.env.REACT_APP_BASEURL}/users/${profileId}/address/${addressId}`,
         payload,
@@ -111,14 +110,14 @@ export const AddressEditDialogFunc = ({
       );
 
       if (response.status === 200) {
-        // Handle successful API response
+        
         console.log("Address added successfully:", response.data);
         enqueueSnackbar(response.data.message, { variant: "success" });
         setAddressData(response.data.user?.address)
-        setOpen(false); // Close the dialog
-        reset(); // Reset form fields
+        setOpen(false); 
+        reset(); 
       } else {
-        // Handle error response
+       
         console.error("Error adding address:", response.data);
         enqueueSnackbar("Error adding address", { variant: "error" });
       }
@@ -293,12 +292,12 @@ export const AddressEditDialogFunc = ({
                 <Controller
                   name="addressType"
                   control={control}
-                  defaultValue="Home" // Set default value
+                  defaultValue="Home" 
                   render={({ field }) => (
                     <RadioGroup
                       {...field}
                       aria-labelledby="address-type-label"
-                      row // Aligns radio buttons horizontally
+                      row 
                     >
                       <FormControlLabel
                         value="Home"

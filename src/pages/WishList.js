@@ -4,8 +4,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { WishListCard } from "../components/Wishlist/WishListCard";
 import { NoWishList } from "../components/Wishlist/NoWishList";
-import styles from '../styles/WishList.module.css'
-
+import styles from "../styles/WishList.module.css";
 
 function WishList() {
   const [Bike, setBike] = React.useState([]);
@@ -34,18 +33,12 @@ function WishList() {
           p: { xs: 1, sm: 4, md: 6 },
         }}
       >
-        <Typography
-          variant="h4"
-          className={styles.h4}
-          color="text.secondary"
-        >
+        <Typography variant="h4" className={styles.h4} color="text.secondary">
           My Wishlist ({Bike.length} Items)
         </Typography>
         <Grid container spacing={1}>
           {load ? (
-            <Box
-            className={styles.progress}
-            >
+            <Box className={styles.progress}>
               <CircularProgress />
             </Box>
           ) : Bike.length > 0 ? (

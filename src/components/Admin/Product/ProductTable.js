@@ -119,7 +119,7 @@ const ProductTable = () => {
     { id: "brand", label: "Brand", sortable: true },
     { id: "engineCapacity", label: "Engine Capacity", sortable: true },
     { id: "mileage", label: "Mileage", sortable: true },
-    { id: "offerPrice", label: "Price($)", sortable: true },
+    { id: "offerPrice", label: "Price(₹)", sortable: true },
     { id: "isNewArrival", label: "New Arrival", sortable: false },
     { id: "isBestSeller", label: "Best Seller", sortable: false },
     { id: "isFeatureProduct", label: "Feature Products", sortable: false },

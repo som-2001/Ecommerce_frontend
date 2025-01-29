@@ -10,14 +10,14 @@ import {
   CircularProgress,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from '@mui/icons-material/Cancel';
+import CancelIcon from "@mui/icons-material/Cancel";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import Footer from "../components/Footer";
 import axios from "axios";
 import dayjs from "dayjs";
 import { ReviewDrawer } from "../components/UserReview/ReviewDrawer";
 import { NoOrder } from "../components/order/NoOrder";
-import styles from '../styles/Order.module.css'
+import styles from "../styles/Order.module.css";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -54,61 +54,52 @@ const OrdersPage = () => {
         console.log(error);
       });
   };
-  
+
   return (
     <Box>
       <Box className={styles.allOrderParents}>
-        <Typography
-          variant="h5"
-          className={styles.h5}
-        >
+        <Typography variant="h5" className={styles.h5}>
           All Orders
         </Typography>
         <Grid container spacing={3}>
           {loading ? (
-            <Box
-              className={styles.CircularProgress}
-            >
+            <Box className={styles.CircularProgress}>
               <CircularProgress />
             </Box>
           ) : orders?.length === 0 ? (
             <NoOrder />
           ) : (
             orders.map((order) => (
-              <Grid
-                item
-                xs={12}
-                key={order.id}
-                className={styles.center}
-              >
+              <Grid item xs={12} key={order.id} className={styles.center}>
                 <Card
-                 className={styles.card}
+                  className={styles.card}
                   sx={{
                     width: { xs: "78vw", md: "57vw" },
                   }}
                 >
                   {/* Header Section */}
-                  <Box
-                   className={styles.header}
-                  >
-                    {order?.status==="cancelled" ? <Avatar
-                      className={styles.cancelStatus}
-                    >
-                      <CancelIcon />
-                    </Avatar> :<Avatar
-                       className={styles.deliveredStatus}
-                    >
-                      <CheckCircleIcon />
-                    </Avatar>}
+                  <Box className={styles.header}>
+                    {order?.status === "cancelled" ? (
+                      <Avatar className={styles.cancelStatus}>
+                        <CancelIcon />
+                      </Avatar>
+                    ) : (
+                      <Avatar className={styles.deliveredStatus}>
+                        <CheckCircleIcon />
+                      </Avatar>
+                    )}
                     <Box>
                       <Typography
                         variant="body1"
-                        sx={{ color: order.status==="cancelled"?"red":"green", fontWeight: "bold" }}
+                        sx={{
+                          color: order.status === "cancelled" ? "red" : "green",
+                          fontWeight: "bold",
+                        }}
                       >
                         {order.status}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        On{" "}
+                        Delivered by{" "}
                         {dayjs(order?.shipmentDetails?.deliveryDate).format(
                           "DD-MMM-YYYY"
                         )}
@@ -117,13 +108,11 @@ const OrdersPage = () => {
                   </Box>
                   {/* Product Info Section */}
                   {order?.products?.map((item, index) => (
-                    <Box
-                     className={styles.productInfoBox}
-                    >
+                    <Box className={styles.productInfoBox}>
                       <img
                         src={item?.image?.[0]}
                         alt={order.productName}
-                       className={styles.img}
+                        className={styles.img}
                       />
                       <Grid container>
                         <Grid item xs={12} sm={6} sx={{ flexGrow: 1 }}>
@@ -139,14 +128,14 @@ const OrdersPage = () => {
                               Color:{" "}
                             </Typography>
                             <Box
-                            className={styles.colorBox}
+                              className={styles.colorBox}
                               sx={{
                                 backgroundColor: item?.selectedColor,
                               }}
                             />
                           </Box>
                           <Typography variant="body2" color="green">
-                            Price: ${order.totalPrice}
+                            Price: ₹{order.totalPrice}
                           </Typography>
                         </Grid>
                         <Grid item xs={8} sm={6}>

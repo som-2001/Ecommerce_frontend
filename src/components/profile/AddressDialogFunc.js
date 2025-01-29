@@ -21,7 +21,6 @@ import { enqueueSnackbar } from "notistack";
 import axios from "axios";
 import styles from "../../styles/profile.module.css";
 
-// Yup validation schema
 const schema = yup
   .object()
   .shape({
@@ -41,7 +40,7 @@ const schema = yup
     alternatePhoneumber: yup
       .string()
       .matches(/^\d{10}$/, "Phone number must be 10 digits"),
-    landmark: yup.string().optional(),
+    landmark: yup.string().required(),
     addressType: yup
       .string()
       .oneOf(["Home", "Work"], "Address type must be either Home or Work"),
@@ -70,11 +69,10 @@ export const AddressDialogFunc = ({
   };
 
   console.log(errors);
-  // On form submission
+  
   const onSubmit = async (data) => {
     try {
-      console.log(data);
-      // Prepare payload for the API request
+    
       const payload = {
         email: profileData.email,
         password: profileData.password,
@@ -95,12 +93,11 @@ export const AddressDialogFunc = ({
         },
       };
 
-      // Make the API call using axios.put
       const response = await axios.put(
         `${process.env.REACT_APP_BASEURL}/users/users/${
           jwtDecode(Cookies.get("accessToken")).id
         }`,
-        payload, // axios handles the body as the second argument
+        payload, 
         {
           headers: {
             "Content-Type": "application/json",
@@ -110,17 +107,17 @@ export const AddressDialogFunc = ({
       );
 
       if (response.status === 200) {
-        // Handle successful API response
+    
         console.log("Address added successfully:", response.data);
         enqueueSnackbar(response.data.message, { variant: "success" });
         console.log(response?.data?.message);
 
         setProfileData(response?.data?.user?.address);
 
-        setOpen(false); // Close the dialog
-        reset(); // Reset form fields
+        setOpen(false); 
+        reset();
       } else {
-        // Handle error response
+       
         console.error("Error adding address:", response.data);
         enqueueSnackbar("Error adding address", { variant: "error" });
       }
@@ -312,12 +309,12 @@ export const AddressDialogFunc = ({
                 <Controller
                   name="addressType"
                   control={control}
-                  defaultValue="Home" // Set default value
+                  defaultValue="Home" 
                   render={({ field }) => (
                     <RadioGroup
                       {...field}
                       aria-labelledby="address-type-label"
-                      row // Aligns radio buttons horizontally
+                      row
                     >
                       <FormControlLabel
                         value="Home"

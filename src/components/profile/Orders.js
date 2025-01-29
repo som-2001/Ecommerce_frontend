@@ -1,23 +1,26 @@
-import { Box, CardMedia, Grid, Typography, Button, CircularProgress } from "@mui/material";
+import {
+  Box,
+  CardMedia,
+  Grid,
+  Typography,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import { OrderTracker } from "./OrderTracker";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import dayjs from "dayjs";
+import styles from "../../styles/Order.module.css";
 
-export const Orders = ({ orders, orderLength, orderError,load }) => {
+export const Orders = ({ orders, orderLength, orderError, load }) => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ width: {xs:"88vw",sm:"77vw"}, mt: 2 }}>
+    <Box sx={{ width: { xs: "88vw", sm: "77vw" }, mt: 2 }}>
       <Typography variant="h6" color="text.secondary" gutterBottom>
         My Orders ({orderLength || 0}) (
         <span
-          style={{
-            fontSize: "1.0rem",
-            textDecoration: "underline",
-            cursor: "pointer",
-            color: "#64b5f6",
-          }}
+          className={styles.ordersSeemoreBtn}
           onClick={(e) => navigate("/all-orders")}
         >
           see more
@@ -35,25 +38,19 @@ export const Orders = ({ orders, orderLength, orderError,load }) => {
         </Typography>
       ) : null}
       {load ? (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                width:"70vw",
-                height: "60vh",
-                alignItems: "center",
-              }}
-            >
-              <CircularProgress />
-            </Box>
-          ) :orders?.map((order) => (
-        <OrderCard key={order._id} order={order} load={load}/>
-      ))}
+        <Box className={styles.OrderCircularProgress}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        orders?.map((order) => (
+          <OrderCard key={order._id} order={order} load={load} />
+        ))
+      )}
     </Box>
   );
 };
 
-const OrderCard = ({ order}) => {
+const OrderCard = ({ order }) => {
   const [showAllProducts, setShowAllProducts] = useState(false);
 
   return (
@@ -65,13 +62,11 @@ const OrderCard = ({ order}) => {
       </Typography>
 
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-        Ordered on:{" "}
+        delivered by:{" "}
         {dayjs(order.shipmentDetails.deliveryDate).format("DD MMM, YYYY")}
       </Typography>
 
-      {/* Product List */}
-
-     <Box>
+      <Box>
         {(showAllProducts ? order.products : order.products.slice(0, 1)).map(
           (product) => (
             <Grid container spacing={2} key={product._id} sx={{ mb: 2 }}>
@@ -81,23 +76,13 @@ const OrderCard = ({ order}) => {
                 sm={12}
                 md={3}
                 lg={3}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
+                className={styles.orderCardCenter}
               >
                 <CardMedia
                   component="img"
                   image={product.image?.[0] || "../images/default_product.jpg"} // Default image fallback
                   alt={product.productName}
-                  sx={{
-                    width: "150px",
-                    height: "100px",
-                    borderRadius: 1,
-                    objectFit: "contain",
-                  }}
+                  className={styles.orderCardImg}
                 />
               </Grid>
 
@@ -106,11 +91,7 @@ const OrderCard = ({ order}) => {
                 xs={12}
                 sm={12}
                 md={4}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
+                className={styles.orderCardFlex}
               >
                 <Typography
                   variant="body2"
@@ -120,7 +101,7 @@ const OrderCard = ({ order}) => {
                   {product.productName} - {product.brand} ({product.model})
                 </Typography>
                 <Typography variant="body1" color="green">
-                  ${product.offerPrice || "N/A"}
+                ₹{product.offerPrice || "N/A"}
                 </Typography>
                 <Box sx={{ mt: 2 }}>
                   <Typography
@@ -152,11 +133,7 @@ const OrderCard = ({ order}) => {
                 xs={12}
                 sm={12}
                 md={5}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
+                className={styles.orderCardFlex}
               >
                 <OrderTracker status={order?.status} />
               </Grid>

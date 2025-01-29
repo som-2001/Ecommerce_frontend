@@ -18,15 +18,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-//   import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as EmailValidator from "email-validator";
 import { motion } from "motion/react";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { enqueueSnackbar } from "notistack";
-import Cookies from 'js-cookie';
-// import { useEffect } from "react";
+
 
 const schema = yup.object().shape({
   email: yup
@@ -43,11 +41,7 @@ const schema = yup.object().shape({
     .required("You must agree to the terms and conditions."),
 });
 
-
-
 function Signin() {
-
-
   const {
     handleSubmit,
     formState: { errors },
@@ -59,7 +53,7 @@ function Signin() {
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationKey: ["register"],
+    mutationKey: ["login"],
     mutationFn: (user) => {
       return axios.post(`${process.env.REACT_APP_BASEURL}/auth/login`, user, {
         withCredentials: true,
@@ -68,18 +62,14 @@ function Signin() {
     onSuccess: (user) => {
       console.log(user);
       enqueueSnackbar(user.data.message, { variant: "success" });
-      Cookies.set('accessToken', user.data.user.accessToken);
-      Cookies.set('refreshToken', user.data.user.refreshToken);
 
       setTimeout(() => {
-        if(user.data.user.role==="user")
-        navigate("/explore-products");
-        else if(user.data.user.role==="admin")
-        navigate("/admin/dashboard");
+        if (user.data.user.role === "user") navigate("/explore-products");
+        else if (user.data.user.role === "admin") navigate("/admin/dashboard");
       }, 1500);
     },
     onError: (error) => {
-      console.error("Registration failed:", error);
+      console.error("Sign in failed:", error);
       // toast.error("Sign-in failed");
       enqueueSnackbar(error.response.data.message, { variant: "error" });
     },

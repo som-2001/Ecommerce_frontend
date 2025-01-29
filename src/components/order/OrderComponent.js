@@ -10,7 +10,7 @@ import { ShippingForm } from "./ShippingForm";
 import { PaymentForm } from "./PaymentForm";
 import { useParams } from "react-router-dom";
 import { PaymentCartForm } from "./PaymentCartForm";
-import styles from '../../styles/Order.module.css'
+import styles from "../../styles/Order.module.css";
 
 const steps = ["Select Address", "Shipping", "Payment"];
 
@@ -21,7 +21,7 @@ export default function OrderComponent() {
   const [ShippingState, setShippingState] = React.useState(false);
 
   const { id } = useParams();
- 
+
   const handlefunction = (data) => {
     setAddressFormState(data);
   };
@@ -59,13 +59,11 @@ export default function OrderComponent() {
   };
 
   return (
-    <Box
-     className={styles.OrderComponentParent}
-    >
+    <Box className={styles.OrderComponentParent}>
       <Stepper
         nonLinear
         activeStep={activeStep}
-        sx={{ width: { xs: "100%", md: "70%" },mb:5 }}
+        sx={{ width: { xs: "100%", md: "70%" }, mb: 5 }}
       >
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
@@ -86,7 +84,6 @@ export default function OrderComponent() {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            {/* Your step content goes here */}
             {activeStep === 0 && (
               <AddressForm handlefunction={handlefunction} />
             )}
@@ -110,9 +107,11 @@ export default function OrderComponent() {
                   display: activeStep === 2 ? "none" : "inherit",
                 }}
                 disabled={
-                  activeStep === 0 ? !addressFormState : 
-                  activeStep === 1 ? !ShippingState : 
-                  true
+                  activeStep === 0
+                    ? !addressFormState
+                    : activeStep === 1
+                    ? !ShippingState
+                    : true
                 }
               >
                 Next

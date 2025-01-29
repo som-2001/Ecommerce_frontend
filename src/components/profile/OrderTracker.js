@@ -3,6 +3,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CancelIcon from "@mui/icons-material/Cancel";
+import styles from "../../styles/Order.module.css";
 
 const steps = [
   { label: "Ordered", icon: ShoppingCartIcon },
@@ -23,7 +24,7 @@ export const OrderTracker = ({ status }) => {
           const StepIcon = step.icon;
 
           return (
-            <Step key={step.label} sx={{width:"40px",display:'flex',justifyContent:"center"}}>
+            <Step key={step.label} className={styles.orderTrackerParent}>
               <StepLabel
                 StepIconComponent={() => (
                   <StepIcon

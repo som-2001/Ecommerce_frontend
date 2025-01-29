@@ -27,7 +27,6 @@ export const Hero = ({ data, load }) => {
     setOpen(true);
   };
 
-
   useEffect(() => {
     if (data) {
       setProfileImage(data?.profilePicture);
@@ -38,7 +37,7 @@ export const Hero = ({ data, load }) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setProfileImage(imageUrl); // Update the image preview
+      setProfileImage(imageUrl); 
 
       const formData = new FormData();
       formData.append("profilePicture", file);
@@ -68,7 +67,7 @@ export const Hero = ({ data, load }) => {
   };
 
   return (
-    <Box sx={{ width: {xs:"88vw",sm:"77vw"}, padding: { xs: 2, sm: 5 } }}>
+    <Box sx={{ width: { xs: "88vw", sm: "77vw" }, padding: { xs: 2, sm: 5 } }}>
       <Box className={styles.HeroParent}>
         <Box>
           <Typography
@@ -88,13 +87,15 @@ export const Hero = ({ data, load }) => {
               )}
             </span>
           </Typography>
-          <Typography variant="body2" color="text.secondary"  sx={{
-             
-              display: {xs:"none",sm:"flex"},
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              display: { xs: "none", sm: "flex" },
               gap: "10px",
               alignItems: "center",
-              
-            }}>
+            }}
+          >
             <span>Joined on,</span>
             <span>
               {load ? (
@@ -107,18 +108,13 @@ export const Hero = ({ data, load }) => {
           </Typography>
         </Box>
         <Box>
-          <Button
-           className={styles.HeroLogout}
-            onClick={openLogoutDialog}
-          >
+          <Button className={styles.HeroLogout} onClick={openLogoutDialog}>
             Logout
           </Button>
         </Box>
       </Box>
 
-      <Box
-       className={styles.banner}
-      >
+      <Box className={styles.banner}>
         <Grid container spacing={2}>
           <Grid
             item
@@ -139,12 +135,8 @@ export const Hero = ({ data, load }) => {
                 className={styles.Heroimg}
               />
             )}
-            <Box
-             className={styles.HeroIcon}
-            >
-              <IconButton
-                className={styles.iconButton}
-              >
+            <Box className={styles.HeroIcon}>
+              <IconButton className={styles.iconButton}>
                 <input
                   type="file"
                   accept="image/*"

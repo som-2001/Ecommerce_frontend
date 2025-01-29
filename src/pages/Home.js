@@ -1,6 +1,4 @@
-import {
-  Box,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { ExploreNow } from "../components/homepage/ExplorNow";
 import { About } from "../components/homepage/About";
 import { Hero } from "../components/homepage/Hero";
@@ -19,7 +17,7 @@ import { AuthNavbar } from "../components/AuthNavbar";
 import { HomeNavbar } from "../components/HomeNavbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from '../styles/home.module.css';
+import styles from "../styles/home.module.css";
 import { Search } from "../components/Search";
 
 function Home() {
@@ -44,10 +42,10 @@ function Home() {
   return (
     <Box
       className={styles.home}
-      sx={{backgroundSize: { xs: "cover", md: "100%" }}}
+      sx={{ backgroundSize: { xs: "cover", md: "100%" } }}
     >
       {token ? <AuthNavbar /> : <HomeNavbar />}
-      <Search/>
+      <Search />
       <Hero />
       <About />
       <ExploreNow />

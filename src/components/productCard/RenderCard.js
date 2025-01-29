@@ -52,7 +52,7 @@ export const RenderCard = ({ bike, load }) => {
         width: { xs: "330px", sm: "360px" },
       }}
     >
-      {/* Product Image */}
+     
       {load ? (
         <Skeleton variant="rectangular" width={400} height={220} />
       ) : (
@@ -68,7 +68,7 @@ export const RenderCard = ({ bike, load }) => {
         />
       )}
 
-      {/* Badge Indicators */}
+    
       <Box className={styles.positionWrapper}>
         {bike.isNewArrival && (
           <Chip label="New Arrival" color="success" size="small" />
@@ -81,7 +81,7 @@ export const RenderCard = ({ bike, load }) => {
         )}
       </Box>
 
-      {/* Wishlist Icon */}
+     
       {token &&
         (load ? null : (
           <Favorite
@@ -93,7 +93,7 @@ export const RenderCard = ({ bike, load }) => {
           />
         ))}
 
-      {/* Product Details */}
+     
       <CardContent
         sx={{
           color: "black",
@@ -145,7 +145,7 @@ export const RenderCard = ({ bike, load }) => {
 
         <Divider sx={{ my: 1 }} />
 
-        {/* Specifications */}
+        
         <Box 
          className={styles.speicification}
           sx={{
@@ -175,7 +175,7 @@ export const RenderCard = ({ bike, load }) => {
 
         <Divider sx={{ my: 1, display: { xs: "none", sm: "block" } }} />
 
-        {/* Price and Discount */}
+        
         <Box className={styles.price}>
           <Typography
            className={styles.Typography}

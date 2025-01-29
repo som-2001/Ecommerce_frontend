@@ -121,7 +121,7 @@ const OrderTable = ({
                     <TableCell
                       align="center"
                       sx={{ color: "green" }}
-                    >{`$${order.totalPrice}`}</TableCell>
+                    >{`₹${order.totalPrice}`}</TableCell>
                     <TableCell align="center">
                       <Chip
                         label={order.paymentStatus}

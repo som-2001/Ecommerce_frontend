@@ -38,7 +38,7 @@ export const Search = () => {
                   component="img"
                   height="80"
                   className={styles.cardMedia}
-                  image={data.image?.[0] || "https://via.placeholder.com/180"} // Placeholder if no image
+                  image={data.image?.[0] || "https://via.placeholder.com/180"}
                   alt={data.productName || "Product Image"}
                 />
                 {/* Product Details */}

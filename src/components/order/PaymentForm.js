@@ -86,7 +86,7 @@ export const PaymentForm = () => {
 
     if (response?.data?.message === "Order confirmed successfully.") {
       navigate("/success");
-    } 
+    }
 
     const session = response.data?.checkoutSessionId;
     if (session) {
@@ -107,7 +107,6 @@ export const PaymentForm = () => {
       }}
     >
       <Grid container spacing={4}>
-        {/* Summary Section */}
         <Grid item xs={12} md={6}>
           <Typography variant="h5" sx={{ mb: 2, fontWeight: "bold" }}>
             Summary
@@ -148,7 +147,7 @@ export const PaymentForm = () => {
               </Grid>
               <Grid item xs={4}>
                 <Typography variant="body1" color="green" fontWeight="bold">
-                  ${product?.offerPrice}{" "}
+                ₹{product?.offerPrice}{" "}
                   <span
                     style={{
                       fontSize: "14px",
@@ -156,7 +155,7 @@ export const PaymentForm = () => {
                       textDecoration: "line-through",
                     }}
                   >
-                    ${product?.originalPrice}
+                    ₹{product?.originalPrice}
                   </span>{" "}
                   <span style={{ fontSize: "12px", color: "black" }}>
                     {product?.discount}%OFF
@@ -166,7 +165,6 @@ export const PaymentForm = () => {
             </Grid>
           </Box>
 
-          {/* Address Section */}
           <Box sx={{ mb: 2 }}>
             <Typography variant="body2" sx={{ fontWeight: "bold" }}>
               Address
@@ -207,7 +205,6 @@ export const PaymentForm = () => {
             </Box>
           </Box>
 
-          {/* Shipment Section */}
           <Box sx={{ mb: 3 }}>
             <Typography variant="body2" sx={{ fontWeight: "bold" }}>
               Shipment Method
@@ -217,7 +214,6 @@ export const PaymentForm = () => {
             </Typography>
           </Box>
 
-          {/* Price Breakdown */}
           <Box>
             <Grid container spacing={2} sx={{ mb: 1 }}>
               <Grid item xs={6}>
@@ -225,7 +221,7 @@ export const PaymentForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" textAlign="right">
-                  ${product?.offerPrice}
+                ₹{product?.offerPrice}
                 </Typography>
               </Grid>
             </Grid>
@@ -235,7 +231,7 @@ export const PaymentForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" textAlign="right">
-                  ${Tax}
+                ₹{Tax}
                 </Typography>
               </Grid>
             </Grid>
@@ -261,21 +257,20 @@ export const PaymentForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h6" fontWeight="bold" textAlign="right">
-                  ${TotalAmount}
+                ₹{TotalAmount}
                 </Typography>
               </Grid>
             </Grid>
           </Box>
         </Grid>
 
-        {/* Payment Section */}
         <Grid item xs={12} md={6}>
           <Typography variant="h5" sx={{ mb: 3, fontWeight: "bold" }}>
             Payment
           </Typography>
 
           <Box
-           className={styles.OnlinePaymentButton}
+            className={styles.OnlinePaymentButton}
             sx={{
               width: { xs: "75vw", sm: "30vw" },
             }}
@@ -296,9 +291,8 @@ export const PaymentForm = () => {
           </Box>
 
           <Box
-           className={styles.OnlinePaymentButton}
+            className={styles.OnlinePaymentButton}
             sx={{
-             
               width: { xs: "75vw", sm: "30vw" },
             }}
           >
@@ -323,10 +317,7 @@ export const PaymentForm = () => {
               justifyContent: "center",
             }}
           >
-            <Button
-              className={styles.pay}
-              onClick={StripePayment}
-            >
+            <Button className={styles.pay} onClick={StripePayment}>
               Pay
             </Button>
           </Box>

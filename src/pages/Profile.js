@@ -12,8 +12,8 @@ import styles from "../styles/profile.module.css";
 
 function Profile() {
   const [data, setData] = useState([]);
-  const [profileLoad,setProfileLoad]=useState(true);
-  const [orderLoad,setOrderLoad]=useState(true);
+  const [profileLoad, setProfileLoad] = useState(true);
+  const [orderLoad, setOrderLoad] = useState(true);
   const [orders, setOrders] = useState([]);
   const [orderError, setOrderError] = useState("");
   const [orderLength, setOrderLength] = useState("");
@@ -55,12 +55,15 @@ function Profile() {
 
   return (
     <>
-      <Box
-        className={styles.profileParent}
-      >
-        <Hero data={data} load={profileLoad}/>
-        <Form data={data} setChangeState={setChangeState} changeState={changeState} load={profileLoad}/>
-        <ManageAddresses profile={data} load={profileLoad}/>
+      <Box className={styles.profileParent}>
+        <Hero data={data} load={profileLoad} />
+        <Form
+          data={data}
+          setChangeState={setChangeState}
+          changeState={changeState}
+          load={profileLoad}
+        />
+        <ManageAddresses profile={data} load={profileLoad} />
         <Orders
           orders={orders}
           orderLength={orderLength}
@@ -69,7 +72,6 @@ function Profile() {
         />
         <WishList />
       </Box>
-      
     </>
   );
 }
