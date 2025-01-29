@@ -24,7 +24,8 @@ import { motion } from "motion/react";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { enqueueSnackbar } from "notistack";
-
+import { useEffect } from "react";
+import Cookies from 'js-cookie'
 
 const schema = yup.object().shape({
   email: yup
@@ -41,6 +42,7 @@ const schema = yup.object().shape({
     .required("You must agree to the terms and conditions."),
 });
 
+
 function Signin() {
   const {
     handleSubmit,
@@ -51,6 +53,8 @@ function Signin() {
   });
 
   const navigate = useNavigate();
+
+  
 
   const mutation = useMutation({
     mutationKey: ["login"],
