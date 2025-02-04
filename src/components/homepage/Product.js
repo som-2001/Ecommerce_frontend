@@ -107,7 +107,7 @@ export const Product = ({ product }) => {
               gutterBottom
               sx={{ fontSize: { xs: "1.5rem", sm: "2rem", md: "2.2rem" } }}
             >
-              ₹{product?.[0]?.offerPrice}
+              ₹{new Intl.NumberFormat('en-IN').format(product?.[0]?.offerPrice)}
             </Typography>
             <Button
               variant="contained"

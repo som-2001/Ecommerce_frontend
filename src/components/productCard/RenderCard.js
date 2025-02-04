@@ -183,7 +183,7 @@ export const RenderCard = ({ bike, load }) => {
             {load ? (
               <Skeleton animation="wave" width={50} />
             ) : (
-              `₹${bike.offerPrice}`
+              `₹${new Intl.NumberFormat('en-IN').format(bike.offerPrice)}`
             )}
           </Typography>
           <Typography
@@ -192,7 +192,8 @@ export const RenderCard = ({ bike, load }) => {
             {load ? (
               <Skeleton animation="wave" width={50} />
             ) : (
-              `₹${bike.originalPrice}`
+              
+              `₹${new Intl.NumberFormat('en-IN').format(bike.originalPrice)}`
             )}
           </Typography>
           <Typography

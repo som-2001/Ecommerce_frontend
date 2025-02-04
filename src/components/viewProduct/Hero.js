@@ -178,7 +178,7 @@ const Hero = ({ product, coloredProduct, load }) => {
                   {load ? (
                     <Skeleton animation="wave" width={50} />
                   ) : (
-                    `₹${product?.offerPrice || "N/A"}`
+                    `₹${new Intl.NumberFormat('en-IN').format(product?.offerPrice) || "N/A"}`
                   )}
                 </Typography>
                 <Typography
@@ -188,7 +188,7 @@ const Hero = ({ product, coloredProduct, load }) => {
                   {load ? (
                     <Skeleton animation="wave" width={50} />
                   ) : (
-                    `₹${product?.originalPrice || "N/A"}`
+                    `₹${new Intl.NumberFormat('en-IN').format(product?.originalPrice) || "N/A"}`
                   )}
                 </Typography>
 
