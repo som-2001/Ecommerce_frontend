@@ -27,13 +27,12 @@ export const PaymentForm = () => {
   const [selectedItem, setSelectedItem] = useState("");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [TotalAmount, setTotalAmount] = useState("");
-  const [load,setLoad]=useState(false);
+  const [load, setLoad] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-
-   
+    setLoad(false);
 
     axios
       .get(`${process.env.REACT_APP_BASEURL}/products/products/${id}`, {
@@ -341,8 +340,12 @@ export const PaymentForm = () => {
               justifyContent: "center",
             }}
           >
-            <Button className={styles.pay} disabled={load} onClick={StripePayment}>
-            {load?<CircularProgress size={30}/>:<span>Pay</span>}
+            <Button
+              className={styles.pay}
+              disabled={load}
+              onClick={StripePayment}
+            >
+              {load ? <CircularProgress size={30} /> : <span>Pay</span>}
             </Button>
           </Box>
         </Grid>

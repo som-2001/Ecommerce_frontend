@@ -8,7 +8,7 @@ import {
   Chip,
   CircularProgress,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
@@ -29,6 +29,10 @@ export const PaymentCartForm = () => {
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [load, setLoad] = useState(false);
 
+  useEffect(() => {
+    setLoad(false);
+  }, []);
+  
   const StripePayment = async () => {
     setLoad(true);
     const response = await axios.post(
@@ -293,8 +297,12 @@ export const PaymentCartForm = () => {
               justifyContent: "center",
             }}
           >
-            <Button className={styles.pay} disabled={load} onClick={StripePayment}>
-              {load?<CircularProgress size={30}/>:<span>Pay</span>}
+            <Button
+              className={styles.pay}
+              disabled={load}
+              onClick={StripePayment}
+            >
+              {load ? <CircularProgress size={30} /> : <span>Pay</span>}
             </Button>
           </Box>
         </Grid>
