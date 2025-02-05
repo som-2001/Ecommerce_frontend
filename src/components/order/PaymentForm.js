@@ -24,7 +24,7 @@ export const PaymentForm = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const { address, shippingDate } = useSelector((state) => state.product);
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("Online");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [TotalAmount, setTotalAmount] = useState("");
   const [load, setLoad] = useState(false);

@@ -26,7 +26,7 @@ export const PaymentCartForm = () => {
     (state) => state.product
   );
   
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("Online");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [load, setLoad] = useState(false);
 
@@ -56,7 +56,7 @@ export const PaymentCartForm = () => {
     const session = response.data?.checkoutSessionId;
     const result = await stripe.redirectToCheckout({ sessionId: session });
     setLoad(false);
-    
+
     if (result.error) {
       setLoad(false);
       console.error(result.error.message);
