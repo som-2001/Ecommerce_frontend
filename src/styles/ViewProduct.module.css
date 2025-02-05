@@ -165,17 +165,17 @@
 }
 
 .customBtn {
-  margin-top: 2rem;
-  padding: 1rem;
-  width: 150px;
-  background-color: black;
-  color: white;
-  border-radius: 9px;
-  transition: background-color 0.3s ease;
+  margin-top: 2rem !important;
+  padding: 1rem !important;
+  width: 150px !important;
+  background-color: black !important;
+  color: white !important;
+  border-radius: 9px !important;
+  transition: background-color 0.3s ease !important; 
 }
 
 .customBtn:hover {
-  background-color: #444;
+  background-color: #444 !important;
 }
 
 .RenderCard {

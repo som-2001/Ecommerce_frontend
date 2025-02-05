@@ -43,6 +43,7 @@ export const Review = () => {
       {/* Section Title */}
       <Typography
         variant="h5"
+        sx={{my:4}}
         className={styles.reviewHeading}
       >
         Ratings & Reviews
