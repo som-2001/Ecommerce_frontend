@@ -66,12 +66,12 @@
 }
 
 .activeStep {
-  border: 1px solid black;
-  padding: 15px;
-  color: black;
-  border-radius: 12px;
-  width: 120px;
-  margin-right: 4px;
+  border: 1px solid black !important;
+  padding: 15px !important;
+  color: black !important;
+  border-radius: 12px !important;
+  width: 120px !important;
+  margin-right: 4px !important;
 }
 .PaymentCartFormMap {
   background-color: whitesmoke;
@@ -96,15 +96,15 @@
 }
 
 .pay{
-    background-color: black;
-    padding: 16px;
-    border-radius: 9px;
-    color: white;
-    width: 140px
+    background-color: black !important;
+    padding: 16px !important;
+    border-radius: 9px !important;
+    color: white !important;
+    width: 140px !important
 }
 
 .pay:hover{
-    background-color: #333;
+    background-color: #333 !important;
 }
 
 .shipmentCenter{
