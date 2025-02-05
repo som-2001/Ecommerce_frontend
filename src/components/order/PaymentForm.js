@@ -28,13 +28,10 @@ export const PaymentForm = () => {
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [TotalAmount, setTotalAmount] = useState("");
   const [load, setLoad] = useState(false);
-  const location=useLocation();
+  
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    setLoad(false);
-  },[location.pathname])
 
   useEffect(() => {
     axios
@@ -101,7 +98,7 @@ export const PaymentForm = () => {
     const session = response.data?.checkoutSessionId;
     if (session) {
       const result = await stripe.redirectToCheckout({ sessionId: session });
-
+      setLoad(false);
       if (result.error) {
         setLoad(false);
         console.error(result.error.message);

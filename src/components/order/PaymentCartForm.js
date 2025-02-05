@@ -15,7 +15,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import styles from "../../styles/Order.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const stripe = await stripePromise;
@@ -25,14 +25,12 @@ export const PaymentCartForm = () => {
   const { address, shippingDate, cartProducts, amount } = useSelector(
     (state) => state.product
   );
-  const location=useLocation();
+  
   const [selectedItem, setSelectedItem] = useState("");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [load, setLoad] = useState(false);
 
-  useEffect(() => {
-    setLoad(false);
-  }, [location.pathname]);
+  
 
   const StripePayment = async () => {
     setLoad(true);
@@ -57,7 +55,8 @@ export const PaymentCartForm = () => {
 
     const session = response.data?.checkoutSessionId;
     const result = await stripe.redirectToCheckout({ sessionId: session });
-
+    setLoad(false);
+    
     if (result.error) {
       setLoad(false);
       console.error(result.error.message);
