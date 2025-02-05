@@ -6,6 +6,7 @@ import {
   Button,
   Divider,
   Chip,
+  CircularProgress,
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -26,9 +27,14 @@ export const PaymentForm = () => {
   const [selectedItem, setSelectedItem] = useState("");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [TotalAmount, setTotalAmount] = useState("");
+  const [load,setLoad]=useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
+
+   
+
     axios
       .get(`${process.env.REACT_APP_BASEURL}/products/products/${id}`, {
         withCredentials: true,
@@ -57,6 +63,7 @@ export const PaymentForm = () => {
   };
 
   const StripePayment = async () => {
+    setLoad(true);
     const response = await axios.post(
       `${process.env.REACT_APP_BASEURL}/orders/order`,
       {
@@ -86,6 +93,7 @@ export const PaymentForm = () => {
 
     if (response?.data?.message === "Order confirmed successfully.") {
       navigate("/success");
+      setLoad(false);
     }
 
     const session = response.data?.checkoutSessionId;
@@ -93,6 +101,7 @@ export const PaymentForm = () => {
       const result = await stripe.redirectToCheckout({ sessionId: session });
 
       if (result.error) {
+        setLoad(false);
         console.error(result.error.message);
       }
     }
@@ -332,8 +341,8 @@ export const PaymentForm = () => {
               justifyContent: "center",
             }}
           >
-            <Button className={styles.pay} onClick={StripePayment}>
-              Pay
+            <Button className={styles.pay} disabled={load} onClick={StripePayment}>
+            {load?<CircularProgress size={30}/>:<span>Pay</span>}
             </Button>
           </Box>
         </Grid>

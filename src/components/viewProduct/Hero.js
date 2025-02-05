@@ -333,7 +333,7 @@ const Hero = ({ product, coloredProduct, load }) => {
                   <Button
                     variant="outlined"
                     disabled={cart.includes(product?._id) || load}
-                    className={styles.box}
+                    className={(cart.includes(product?._id) || load)? styles.colorChange:styles.box}
                     // onClick={() => navigate('/cart')}
                     onClick={(e) => addToCart(product?.offerPrice)}
                   >

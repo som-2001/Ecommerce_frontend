@@ -6,6 +6,7 @@ import {
   Button,
   Divider,
   Chip,
+  CircularProgress,
 } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,15 +21,16 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const stripe = await stripePromise;
 
 export const PaymentCartForm = () => {
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const { address, shippingDate, cartProducts, amount } = useSelector(
     (state) => state.product
   );
   const [selectedItem, setSelectedItem] = useState("");
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
+  const [load, setLoad] = useState(false);
 
   const StripePayment = async () => {
+    setLoad(true);
     const response = await axios.post(
       `${process.env.REACT_APP_BASEURL}/orders/order`,
       {
@@ -44,13 +46,15 @@ export const PaymentCartForm = () => {
       }
     );
     if (response?.data?.message === "Order confirmed successfully.") {
+      setLoad(false);
       navigate("/success");
-    } 
+    }
 
     const session = response.data?.checkoutSessionId;
     const result = await stripe.redirectToCheckout({ sessionId: session });
 
     if (result.error) {
+      setLoad(false);
       console.error(result.error.message);
     }
   };
@@ -78,13 +82,18 @@ export const PaymentCartForm = () => {
               alignItems="center"
               className={styles.PaymentCartFormMap}
             >
-              <Grid item xs={12} sm={3} sx={{display:"flex",justifyContent:"center"}}>
+              <Grid
+                item
+                xs={12}
+                sm={3}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
                 <CardMedia
                   component="img"
                   image={product?.product?.image?.[0]}
                   className={styles.PaymentCartFormimg}
                   sx={{
-                    width: { xs: "120px", sm: "80px",md:"80px",lg:"80px" },
+                    width: { xs: "120px", sm: "80px", md: "80px", lg: "80px" },
                   }}
                 />
               </Grid>
@@ -102,8 +111,8 @@ export const PaymentCartForm = () => {
                 </Box>
               </Grid>
               <Grid item xs={12} sm={4}>
-                <Typography variant="body1" color="green" >
-                ₹{product?.product?.offerPrice}{" "}
+                <Typography variant="body1" color="green">
+                  ₹{product?.product?.offerPrice}{" "}
                   <span
                     style={{
                       fontSize: "14px",
@@ -168,7 +177,7 @@ export const PaymentCartForm = () => {
               Shipment Method
             </Typography>
             <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {shippingDate?.method}
+              {shippingDate?.method}
             </Typography>
           </Box>
 
@@ -180,7 +189,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" textAlign="right">
-                ₹{amount}
+                  ₹{amount}
                 </Typography>
               </Grid>
             </Grid>
@@ -190,7 +199,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" textAlign="right">
-                ₹{Tax}
+                  ₹{Tax}
                 </Typography>
               </Grid>
             </Grid>
@@ -200,7 +209,8 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body2" textAlign="right">
-                ₹{shippingDate?.method === "Free" ||
+                  ₹
+                  {shippingDate?.method === "Free" ||
                   shippingDate?.method === "Schedule"
                     ? "FREE"
                     : shippingDate?.method}
@@ -216,7 +226,7 @@ export const PaymentCartForm = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h6" fontWeight="bold" textAlign="right">
-                ₹
+                  ₹
                   {shippingDate?.method === "Free" ||
                   shippingDate?.method === "Schedule"
                     ? Number(Tax) + Number(amount)
@@ -283,12 +293,8 @@ export const PaymentCartForm = () => {
               justifyContent: "center",
             }}
           >
-            <Button
-              className={styles.pay}
-              
-              onClick={StripePayment}
-            >
-              Pay
+            <Button className={styles.pay} disabled={load} onClick={StripePayment}>
+              {load?<CircularProgress size={30}/>:<span>Pay</span>}
             </Button>
           </Box>
         </Grid>

@@ -62,7 +62,14 @@
   border-radius: 8px !important;
   transition: background-color 0.3s !important;
 }
+.colorChange{
+  flex: 1 !important;
+  padding: 1rem !important;
+  border-color: rgb(237, 234, 234) !important;
+  color: rgb(150, 147, 147) !important;
+  border-radius: 8px !important;
 
+}
 .box:hover {
   background-color: #e3f2fd !important;
 }
