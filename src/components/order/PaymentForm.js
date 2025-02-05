@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import { loadStripe } from "@stripe/stripe-js";
@@ -28,12 +28,15 @@ export const PaymentForm = () => {
   const [Tax, setTax] = useState(Math.floor(Math.random() * 20));
   const [TotalAmount, setTotalAmount] = useState("");
   const [load, setLoad] = useState(false);
+  const location=useLocation();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(()=>{
     setLoad(false);
+  },[location.pathname])
 
+  useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BASEURL}/products/products/${id}`, {
         withCredentials: true,
