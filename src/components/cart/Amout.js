@@ -14,6 +14,7 @@ import styles from '../../styles/cart.module.css'
     const navigate=useNavigate();
     const {amount}=useSelector(state=>state.product);
     const [cartItems,setCartItems] =useState(0);
+    
 
     useEffect(()=>{
        if(length){

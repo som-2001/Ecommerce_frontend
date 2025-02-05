@@ -7,24 +7,29 @@ import { enqueueSnackbar } from "notistack";
 import styles from "../../styles/cart.module.css"
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export const CartProduct = ({ cart, setCart }) => {
  
+  const [load,setLoad]=useState(false);
   const dispatch = useDispatch();
   const navigate=useNavigate();
 
   const removeCart = (id,price) => {
+    setLoad(true);
     axios
       .delete(`${process.env.REACT_APP_BASEURL}/cart/remove/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
+        setLoad(false);
         enqueueSnackbar(res.data.message,{variant:"success"});
         setCart((prev) => prev.filter((product) => product?.product?._id !== id));
         dispatch(removeCartProduct(id));
         dispatch(removeAmount(price));
       })
       .catch((error) => {
+        setLoad(false);
         console.error("Error removing item from cart:", error.message);
       });
   };
@@ -108,7 +113,7 @@ export const CartProduct = ({ cart, setCart }) => {
           <Button
             variant="contained"
             className={styles.removeButton}
-           
+            disabled={load}
             onClick={() => removeCart(cart?.product?._id,cart?.product?.offerPrice)}
           >
             Remove

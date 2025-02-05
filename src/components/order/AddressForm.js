@@ -1,4 +1,4 @@
-  import { Box, Chip, Typography } from "@mui/material";
+  import { Box, Chip, CircularProgress, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import { AddressDialogFunc } from "../profile/AddressDialogFunc";
@@ -13,9 +13,11 @@ export const AddressForm = ({ handlefunction }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [addressData, setAddressData] = useState([]);
+  const [load,setLoad]=useState(false);
   const dispatch=useDispatch();
 
   useEffect(() => {
+    setLoad(true);
     axios
       .get(
         `${process.env.REACT_APP_BASEURL}/users/users/${
@@ -25,9 +27,11 @@ export const AddressForm = ({ handlefunction }) => {
       )
       .then((res) => {
         console.log(res.data);
+        setLoad(false);
         setAddressData(res.data?.address);
       })
       .catch((err) => {
+        setLoad(false);
         console.log(err);
       });
   }, []);
@@ -44,19 +48,7 @@ export const AddressForm = ({ handlefunction }) => {
         Manage Addresses ({addressData.length})
       </Typography>
 
-      {/* <Box
-        className={styles.addressParent}
-        onClick={(e) => setOpenDialog(true)}
-      >
-        <AddIcon className={styles.icon}/>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          className={styles.addressText}
-        >
-          Add a new Address
-        </Typography>
-      </Box> */}
+      {load && <CircularProgress size={30} sx={{my:5}}/>}
 
       {addressData.map((address) => (
         <Box
